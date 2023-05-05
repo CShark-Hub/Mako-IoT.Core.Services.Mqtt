@@ -1,4 +1,5 @@
-# Project readme
+# Mako-IoT.Core.Services.Mqtt
+Implementation of ICommunicationService with MQTT client ([MQTTnet](https://github.com/dotnet/MQTTnet)).
 
 ## How to manually sync fork
 - Clone repository and navigate into folder
