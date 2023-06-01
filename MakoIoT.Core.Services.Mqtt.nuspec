@@ -17,6 +17,8 @@
     <description>MQTT communication service for MAKO-IoT Core</description>
     <tags>mako-iot core mqtt</tags>
     <dependencies>
+      <dependency id="Microsoft.Extensions.Logging.Abstractions" version="7.0.0" />
+      <dependency id="MakoIoT.Core.Services.Interface" version="1.0.20" />
       <dependency id="MQTTnet" version="4.2.1" />
     </dependencies>
   </metadata>
