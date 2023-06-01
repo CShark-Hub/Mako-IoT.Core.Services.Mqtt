@@ -11,16 +11,12 @@
     </releaseNotes>
     <readme>docs\README.md</readme>
     <developmentDependency>false</developmentDependency>
-    <projectUrl>https://github.com/CShark-Hub/Mako-IoT.Core.Services.TimeZones</projectUrl>
-    <repository type="git" url="https://github.com/CShark-Hub/Mako-IoT.Core.Services.TimeZones" />
+    <projectUrl>https://github.com/CShark-Hub/Mako-IoT.Core.Services.Mqtt</projectUrl>
+    <repository type="git" url="https://github.com/CShark-Hub/Mako-IoT.Core.Services.Mqtt" />
     <copyright>Copyright (c) CSHARK Sp. z o. o.</copyright>
     <description>MQTT communication service for MAKO-IoT Core</description>
     <tags>mako-iot core mqtt</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
-      <dependency id="nanoFramework.System.Collections" version="1.4.0" />
-      <dependency id="nanoFramework.System.Text" version="1.2.7" />
-      <dependency id="nanoFramework.System.IO.Streams" version="1.1.15" />
       <dependency id="MQTTnet" version="4.2.1" />
     </dependencies>
   </metadata>
