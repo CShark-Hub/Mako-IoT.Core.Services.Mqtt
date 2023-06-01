@@ -7,7 +7,7 @@ using MakoIoT.Core.Services.Mqtt.Configuration;
 using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Client;
-using MQTTnet.Client.Options;
+using MQTTnet.Protocol;
 
 namespace MakoIoT.Core.Services.Mqtt
 {
@@ -54,7 +54,7 @@ namespace MakoIoT.Core.Services.Mqtt
             {
                 _mqttClient = _mqttFactory.CreateMqttClient();
 
-                _mqttClient.UseApplicationMessageReceivedHandler(args => OnMessageReceived(_mqttClient, args));
+                _mqttClient.ApplicationMessageReceivedAsync += OnMessageReceivedAsync;
             }
 
             if (!_mqttClient.IsConnected)
@@ -103,18 +103,20 @@ namespace MakoIoT.Core.Services.Mqtt
             var applicationMessage = new MqttApplicationMessageBuilder()
                 .WithTopic(topic)
                 .WithPayload(messageString)
-                .WithAtLeastOnceQoS()
+                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce)
                 .Build();
 
 
             _mqttClient.PublishAsync(applicationMessage).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        private void OnMessageReceived(object sender, MqttApplicationMessageReceivedEventArgs e)
+        private Task OnMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs e)
         {
             _logger.LogDebug($"Received message from topic: {e.ApplicationMessage.Topic}");
             MessageReceived?.Invoke(this, 
                 Encoding.UTF8.GetString(e.ApplicationMessage.Payload, 0, e.ApplicationMessage.Payload.Length));
+
+            return Task.CompletedTask;
         }
 
         private string[] GetSubscriptionTopics(string[] subscriptions)
